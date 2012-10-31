@@ -23,18 +23,26 @@ module NewRelic
 
           def []=(*args)
             @lock.synchronize { super }
+          rescue => e
+            NewRelic::Control.instance.log.warn("#{e.class.name}: #{e.message}")
           end
 
           def clear(*args)
             @lock.synchronize { super }
+          rescue => e
+            NewRelic::Control.instance.log.warn("#{e.class.name}: #{e.message}")
           end
 
           def delete(*args)
             @lock.synchronize { super }
+          rescue => e
+            NewRelic::Control.instance.log.warn("#{e.class.name}: #{e.message}")
           end
 
           def delete_if(*args)
             @lock.synchronize { super }
+          rescue => e
+            NewRelic::Control.instance.log.warn("#{e.class.name}: #{e.message}")
           end
 
           def reset
